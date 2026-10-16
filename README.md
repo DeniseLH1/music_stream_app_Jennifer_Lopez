@@ -1,4 +1,4 @@
-Tickyiyo
+## Tickyiyo
 
 Tickyiyo es una aplicación web moderna diseñada bajo una arquitectura modular de cliente y administración, orientada a la venta y gestión de entradas para conciertos, obras de teatro, festivales y eventos deportivos.
 ​El proyecto resuelve la necesidad de automatizar la oferta de boletería digital mediante una interfaz intuitiva para el usuario final (con buscador en tiempo real, filtros dinámicos por ciudad y categoría, selector multidivisa y carrito de compras interactivo) y un panel de control robusto para el administrador (gestión CRUD de eventos, categorías y control detallado de transacciones de ventas). Toda la persistencia de datos se gestiona de forma eficiente y nativa utilizando LocalStorage, garantizando una experiencia de usuario fluida sin depender de bases de datos externas pesadas.
