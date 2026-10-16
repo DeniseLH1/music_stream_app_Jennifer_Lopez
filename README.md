@@ -5,7 +5,7 @@ Tickyiyo es una aplicación web moderna diseñada bajo una arquitectura modular 
 
 Estructura del Proyecto
 ​La arquitectura de archivos y carpetas del proyecto se encuentra organizada de la siguiente manera:
-
+```text
 Tickyiyo/
 │
 ├── css/
@@ -27,7 +27,8 @@ Tickyiyo/
     ├── ventas.html         # Módulo administrativo de control de transacciones
     ├── dashboard.html      # Panel general del administrador
     └── login.html          # Acceso al sistema de gestión
-    
+```
+
 Detalle de los Módulos
 ​El sistema está dividido en subsistemas interconectados que aseguran el flujo completo de la aplicación:
 ​1. Módulo de Usuario / Catálogo (index.html & usuario.js)
