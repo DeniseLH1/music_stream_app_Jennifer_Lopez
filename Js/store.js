@@ -1,13 +1,83 @@
 const PRODUCTS = [
-    { id: "homerun", title: "Homerun", artist: "Paulo Londra", price: 10000, image: "homerun.jpeg" },
-    { id: "back-to-the-game", title: "Back to the game", artist: "Paulo Londra", price: 10000, image: "back-to-the-game.jpeg" },
-    { id: "versus", title: "Versus", artist: "Paulo Londra", price: 10000, image: "versus.avif" },
-    { id: "visualizate", title: "Visualízate", artist: "Gente de Zona", price: 10000, image: "visualizate.jpeg" },
-    { id: "divide", title: "Divide", artist: "Ed Sheeran", price: 10000, image: "divide.jpg" },
-    { id: "disco-duro", title: "El disco duro", artist: "Daddy Yankee", price: 10000, image: "Disco-duro.jpeg" },
-    { id: "eminem-show", title: "The Eminem Show", artist: "Eminem", price: 10000, image: "eminen-show.jpg" },
-    { id: "recovery", title: "Recovery", artist: "Eminem", price: 10000, image: "recovery.jpeg" },
-    { id: "soul-intent", title: "Soul Intent", artist: "Eminem", price: 10000, image: "soul intent.jpeg" }
+    {
+        id: "homerun", title: "Homerun", artist: "Paulo Londra", price: 10000, image: "homerun.jpeg",
+        description: "Homerun es el álbum debut del cantautor argentino Paulo Londra, lanzado en 2019. Incluye canciones como “Adán y Eva” y “Nena maldición”.",
+        playableTrackIndexes: [0],
+        tracks: [
+            ["Adán y Eva", "4:17"], ["Homerun", "2:30"], ["Tal Vez", "4:24"], ["No puedo", "2:55"],
+            ["Por eso vine", "2:57"], ["Sólo pienso en ti", "3:51"], ["Forever alone", "3:53"],
+            ["Condenado para el millon", "3:42"], ["Nena maldicion", "3:47"], ["Dimelo", "2:47"],
+            ["Chica paranormal", "3:16"], ["Maldita abusadora", "3:10"], ["Querido amigo", "2:48"],
+            ["Luna llena", "3:00"]
+        ]
+    },
+    {
+        id: "back-to-the-game", title: "Back to the game", artist: "Paulo Londra", price: 10000, image: "back-to-the-game.jpeg",
+        tracks: [
+            ["Chango", "2:34"], ["Plan A", "2:58"], ["Party en el Barrio", "3:56"], ["Luces", "2:52"],
+            ["Por Deporte", "2:49"], ["Noche de Novela", "3:11"], ["Nublado", "2:57"], ["A Veces", "3:11"],
+            ["Cansado", "3:01"], ["Tenso", "2:50"], ["Ella", "3:33"], ["Julieta", "3:04"],
+            ["Ojalá", "2:45"], ["Necio", "3:38"], ["Chance", "3:24"], ["Toc Toc", "2:37"]
+        ]
+    },
+    {
+        id: "versus", title: "Versus", artist: "Paulo Londra", price: 10000, image: "versus.avif",
+        tracks: [["SIN CADENAS", "2:22"], ["MI VERSIÓN", "2:38"], ["NEXT", "2:01"], ["GLAMPING", "2:21"], ["PVSL", "3:02"], ["GRACIAS", "1:59"]]
+    },
+    {
+        id: "visualizate", title: "Visualízate", artist: "Gente de Zona", price: 10000, image: "visualizate.jpeg",
+        tracks: [
+            ["La Gozadera (feat. Marc Anthony)", "3:23"], ["Algo Contigo", "3:29"],
+            ["Piensas (Dile la Verdad) (feat. Gente de Zona)", "3:48"], ["Por Ti", "3:30"],
+            ["La Tentación", "3:18"], ["Que Tú Quieres", "3:40"], ["Más Whisky (feat. Motiff & A&M)", "3:30"],
+            ["Tú Me Quemas (feat. Gente de Zona & Los Cadillacs)", "4:29"],
+            ["Yo Quiero (Si Tu Te Enamoras) (feat. Pitbull)", "3:28"], ["Traidora (feat. Marc Anthony)", "3:32"],
+            ["Tu y Yo", "3:38"], ["La Gozadera (feat. Marc Anthony) Salsa Version", "3:24"],
+            ["Traidora (feat. Marc Anthony) Salsa Version", "4:00"]
+        ]
+    },
+    {
+        id: "divide", title: "Divide", artist: "Ed Sheeran", price: 10000, image: "divide.jpg",
+        tracks: [
+            ["Eraser", "3:47"], ["Castle on the Hill", "4:21"], ["Dive", "3:58"], ["Shape of You", "3:53"],
+            ["Perfect", "4:23"], ["Galway Girl", "2:50"], ["Happier", "3:27"], ["New Man", "3:09"],
+            ["Hearts Don't Break Around Here", "4:08"], ["What Do I Know?", "3:57"],
+            ["How Would You Feel (Paean)", "4:40"], ["Supermarket Flowers", "3:41"]
+        ]
+    },
+    {
+        id: "disco-duro", title: "El disco duro", artist: "Daddy Yankee", price: 10000, image: "Disco-duro.jpeg",
+        description: "El disco fue anunciado, pero no se publicó como un álbum oficial. Los sencillos relacionados no forman una lista completa confirmada.",
+        tracklistMessage: "Este álbum no se publicó y no cuenta con una lista oficial completa de canciones."
+    },
+    {
+        id: "eminem-show", title: "The Eminem Show", artist: "Eminem", price: 10000, image: "eminen-show.jpg",
+        tracks: [
+            ["Curtains Up (Skit)", "0:29"], ["White America", "5:24"], ["Business", "4:11"],
+            ["Cleanin' Out My Closet", "4:57"], ["Square Dance", "5:23"], ["The Kiss (Skit)", "1:15"],
+            ["Soldier", "3:46"], ["Say Goodbye Hollywood", "4:32"], ["Drips", "4:45"],
+            ["Without Me", "4:50"], ["Paul Rosenberg (Skit)", "0:22"], ["Sing For The Moment", "5:39"],
+            ["Superman", "5:50"], ["Hailie's Song", "5:20"], ["Steve Berman (Skit)", "0:33"],
+            ["When The Music Stops", "4:29"], ["Say What You Say", "5:09"], ["Till I Collapse", "4:57"],
+            ["My Dad's Gone Crazy", "4:27"], ["Curtains Close", "1:01"]
+        ]
+    },
+    {
+        id: "recovery", title: "Recovery", artist: "Eminem", price: 10000, image: "recovery.jpeg",
+        tracks: [
+            ["Cold Wind Blows", "5:04"], ["Talkin’ 2 Myself", "5:00"], ["On Fire", "3:33"],
+            ["Won't Back Down", "4:26"], ["W.T.P.", "3:58"], ["Going Through Changes", "4:59"],
+            ["Not Afraid", "4:11"], ["Seduction", "4:35"], ["No Love", "5:00"], ["Space Bound", "4:39"],
+            ["Cinderella Man", "4:39"], ["25 To Life", "4:02"], ["So Bad", "5:25"],
+            ["Almost Famous", "4:52"], ["Love The Way You Lie", "4:23"], ["You’re Never Over", "5:06"],
+            ["Untitled", "3:14"]
+        ]
+    },
+    {
+        id: "soul-intent", title: "Soul Intent", artist: "Soul Intent", price: 10000, image: "soul intent.jpeg",
+        description: "Soul Intent fue un grupo de hip hop de Detroit asociado a Eminem y Proof. Su lanzamiento de 1995 contiene dos canciones.",
+        tracks: [["F#@!in' Backstabber", "4:45"], ["Biterphobia", "3:38"]]
+    }
 ];
 
 const CART_KEY = "musicstream-cart";
@@ -318,6 +388,76 @@ function renderSuccess() {
     }
 }
 
+function renderAlbumDetail() {
+    const cover = document.querySelector("[data-album-cover]");
+    if (!cover) return;
+
+    const albumId = new URLSearchParams(window.location.search).get("album") || "homerun";
+    const product = PRODUCTS.find((item) => item.id === albumId);
+    if (!product) {
+        window.location.replace("../index.html");
+        return;
+    }
+
+    document.title = `${product.title} · MusicStream`;
+    cover.src = `../Assets/img/${product.image}`;
+    cover.alt = `Portada de ${product.title}`;
+    document.querySelector("[data-album-title]").textContent = product.title;
+    document.querySelector("[data-album-artist]").textContent = product.artist;
+
+    const addButton = document.querySelector("[data-add-to-cart]");
+    addButton.dataset.addToCart = product.id;
+    addButton.dataset.defaultLabel = `Agregar álbum al carrito - ${formatPrice(product.price)}`;
+    addButton.textContent = addButton.dataset.defaultLabel;
+
+    const breadcrumb = document.querySelector("[data-album-breadcrumb]");
+    breadcrumb.textContent = product.title;
+
+    const trackContainer = document.querySelector("[data-track-rows]");
+    const playerBar = document.querySelector(".player-bar");
+    const artistBio = document.querySelector("[data-artist-bio]");
+    trackContainer.replaceChildren();
+
+    if (!product.tracks) {
+        const empty = document.createElement("p");
+        empty.className = "tracklist-empty";
+        empty.textContent = product.tracklistMessage || "La lista de canciones no está disponible por ahora.";
+        trackContainer.append(empty);
+        playerBar.hidden = true;
+        artistBio.textContent = product.description || product.artist;
+        return;
+    }
+
+    playerBar.hidden = !product.playableTrackIndexes?.length;
+    artistBio.textContent = product.description || product.artist;
+    product.tracks.forEach((track, index) => {
+        const title = Array.isArray(track) ? track[0] : track;
+        const duration = Array.isArray(track) ? track[1] || "—" : "—";
+        const row = document.createElement("div");
+        row.className = "track-row";
+        const number = document.createElement("span");
+        number.textContent = String(index + 1);
+        const trackTitle = document.createElement("span");
+        trackTitle.className = "t-title";
+        trackTitle.textContent = title;
+        const artist = document.createElement("span");
+        artist.textContent = product.artist;
+        const time = document.createElement("span");
+        time.textContent = duration;
+        row.append(number, trackTitle, artist, time);
+
+        if (product.playableTrackIndexes?.includes(index)) {
+            const link = document.createElement("a");
+            link.href = "../views/player.html";
+            link.className = "link";
+            link.append(row);
+            trackContainer.append(link);
+        } else {
+            trackContainer.append(row);
+        }
+    });
+}
+
 document.addEventListener("click", (event) => {
     const checkoutButton = event.target.closest("[data-checkout]");
     if (checkoutButton) {
@@ -375,6 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
     renderCheckout();
     renderSuccess();
+    renderAlbumDetail();
     document.querySelectorAll("[data-product-price]").forEach((node) => {
         const product = PRODUCTS.find((item) => item.id === node.dataset.productPrice);
         if (product) node.textContent = formatPrice(product.price);

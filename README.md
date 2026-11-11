@@ -35,7 +35,9 @@ music_stream_app_Jennifer_Lopez/
 
 ## Recorrido entre pantallas
 
-Desde `index.html` se pueden buscar álbumes y agregarlos al carrito. El carrito conserva sus productos y cantidades en el almacenamiento local del navegador, y permite modificarlos antes de continuar al checkout de demostración. Al confirmar, se calcula el resumen, se guarda un pedido local y se muestra la confirmación. El detalle de Homerun también permite agregarlo al carrito. La página de Paulo Londra está en `Artist/Paulo.html`.
+Desde `index.html` se pueden buscar álbumes, abrir el detalle de cada uno y agregarlos al carrito. La vista `views/album-detail.html` carga el álbum seleccionado mediante el parámetro `album` y muestra su lista de canciones. `El disco duro` se identifica como no publicado, sin inventar una lista completa. El reproductor solo está habilitado para las canciones que tienen audio disponible en el proyecto. El carrito conserva sus productos y cantidades en el almacenamiento local del navegador, y permite modificarlos antes de continuar al checkout de demostración. Al confirmar, se calcula el resumen, se guarda un pedido local y se muestra la confirmación. La página de Paulo Londra está en `Artist/Paulo.html`.
+
+Las listas se cotejaron con las ediciones publicadas de [Back to the game](https://www.deezer.com/album/374050677), [VERSUS](https://www.deezer.com/album/720363791), [Visualízate](https://www.deezer.com/album/12920706), [÷](https://www.deezer.com/album/15478674), [The Eminem Show](https://www.deezer.com/album/103248) y [Recovery](https://www.deezer.com/album/595243). La edición de `Soul Intent` de 1995 y sus dos canciones están registradas en [MusicBrainz](https://musicbrainz.org/release/2e7c035b-af5b-4d4b-8d04-7fdf4e85696c).
 
 Las rutas entre vistas y recursos son relativas a la ubicación de cada archivo. Al agregar nuevas páginas o mover recursos, hay que actualizar esas rutas y sus enlaces correspondientes.
 

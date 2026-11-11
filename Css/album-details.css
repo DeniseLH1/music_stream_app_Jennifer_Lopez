@@ -137,6 +137,16 @@
     z-index: 1000;
 }
 
+.player-bar[hidden] {
+    display: none;
+}
+
+.tracklist-empty {
+    margin: 0;
+    padding: 18px 20px;
+    color: #a6b0be;
+}
+
 .current-track {
     flex: 0 0 auto;
 }
