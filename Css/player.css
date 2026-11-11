@@ -8,6 +8,17 @@
     flex-direction: column;
     color: white;
     overflow: hidden;
+    position: absolute;
+}
+.info h3,h1,precio{
+    color: #ffffff;
+    font-size: 1 rem;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 
 .player-main-content {
@@ -118,7 +129,7 @@ h4 a{
 /* --------------barra de sonido------------------- */
 .player-bar{
     height: 1%;
-    width: 80%;
+    width: 50%;
     display: flex;
     justify-content: space-around;
     align-items: center;

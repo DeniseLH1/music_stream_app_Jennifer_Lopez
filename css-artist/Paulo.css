@@ -1,0 +1,153 @@
+/* Contenedor Principal con Grid */
+.album-detail-view {
+    background-color: #0f172a;
+    color: white;
+    padding: 40px;
+    min-height: 100vh;
+    padding-bottom: 100px; /* Espacio para la barra del reproductor */
+}
+
+.album-hero {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 50px;
+}
+
+/* Columna Izquierda: Arte y Botones */
+.main-cover {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.album-meta h1 {
+    font-size: 2.5rem;
+    margin: 20px 0 5px 0;
+    
+}
+
+.album-meta p {
+    color: #a6b0be;
+    margin-bottom: 30px;
+}
+
+.btn-buy {
+    width: 100%;
+    background-color: #398043; /* Azul Eléctrico */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.secondary-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    flex: 1;
+    background-color: #1e293b;
+    border: 1px solid #4b4b4b;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Columna Derecha: Tracklist */
+.tracklist-container {
+    margin-top: 20px;
+    background-color: rgba(44, 45, 46, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.track-header, .track-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 80px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #3c3f42;
+    font-size: 0.9rem;
+}
+
+.track-header {
+    color: #64748b;
+    font-weight: bold;
+}
+
+.track-row:hover {
+    background-color: #334155;
+    cursor: pointer;
+}
+
+.t-title {
+    font-weight: bold;
+}
+.link{
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit;        /* Hereda el color blanco/claro que ya tenías */
+    display: block; 
+}
+
+
+/* Efecto en la imagen del álbum */
+.album-mini-resizer {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.album-mini-resizer:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Brillo azul */
+}
+
+/* Controles de reproducción */
+.player-bar{
+    height: 1%;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px;
+
+
+}
+.player-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.buttons-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.control-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.1s;
+}
+
+.control-icon:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+h4 a{
+    color: #2f7445;
+    justify-content: space-around;
+    padding: 10px;
+    right: 0px;
+}

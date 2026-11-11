@@ -1,153 +1,177 @@
-
-/* 1. Variables Globales (Colores solicitados) */
+/* 1. Variables Globales */
 :root {
-    --bg-dark: #252525;           /* Fondo principal oscuro */
-    --bg-sidebar: #303030;        /* Fondo lateral ligeramente más claro */
-    --accent-blue: #3b82f6;       /* Azul eléctrico para acentos */
-    --text-main: #f8fafc;         /* Texto casi blanco para legibilidad */
-    --text-dim: #94a3b8;          /* Texto gris para detalles */
-    --card-bg: #212224;           /* Fondo de las tarjetas de álbumes */
+    --bg-dark: #2a8b3d;
+    --bg-card:#1f3d2a;
+    --bg-sidebar: #1d311d;
+    --accent-blue: #3b82f6;
+    --text-main: #f8fafc;
+    --text-dim: #0fadb5;
+    --card-bg: #4d724fdb;
+    --fond-dark: #000000db;
 }
 
+/* 2. Estilos Generales */
 body {
-    background-color: var(--bg-dark);
+    background-image: radial-gradient(var(--bg-dark),var(--fond-dark));
     color: var(--text-main);
     line-height: 1.6;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.opciones,.buscar{
-    display: flex;
-    align-items:center;
-    gap: 15px; /* Espaciado interno rápido */
-}
-.opciones nav {
-    display: flex;
-    gap: 10px;
-}
-.menu a:hover {
-    color: white;
-}
-
+/* 3. Header */
 .global-header {
-    background-color: #19191a;
+    background-color: #213624;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between; /* Reparte los 3 grupos: izquierda, centro y derecha */
     align-items: center;
-    padding: 10px 20px;
-    color: white;
+    padding: 10px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
+/* Grupo Izquierda */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1; 
+}
+
+/* El Buscador */
 .search-bar input {
-    background: #323333;
+    background: #434343;
     border: none;
     border-radius: 15px;
-    padding: 5px 10px;
-    color: white;
+    padding: 8px 15px;
+    color: rgb(222, 197, 6);
+    width: 200px;
 }
-.layout-principal {
-    display: flex; 
-    flex-direction: column; 
-    width: 70%;
-    font-size: 20px;
-    max-width: 10%;
-    margin: 0;
-    font-family: Georgia, 'Times New Roman';
+
+/* Grupo Centro (Menú) */
+.menu-central {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex: 1; 
 }
-/* Efecto para cuando pasas el mouse */
-.layout-principal a:hover {
-    color: white;
+
+.menu-central a {
+    text-decoration: none;
+    color: #60b9a0;
+    font-weight: 500;
+    transition: 0.3s;
 }
-.sidebar{
-    background-color: #1c1d1d;
-    padding: 20px;
-    width: 150px;
-    max-width: 150px;
+
+.menu-central a:hover {
+    color: #d6800f;
 }
-.fondo{
-        width: 95%; 
-        height: 15%;          
-        padding: 30px;
-        max-width: 100%;
-        text-align: right;
-        background-image: linear-gradient( rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('../Assets/icons/Fond.png');
-        background-size: cover;
-        color: #ffffff;
-        font-size: 20px;
+
+/* Grupo Derecha */
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1; 
 }
-.app-container{
+
+/* 4. Layout Principal */
+.app-container {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 200px 3fr; 
     min-height: 100vh;
 }
 
-/* Diseño de la tarjeta*/
-.albums{
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* Caja lado izquierda */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    padding: 30px;
+    font-family: Georgia, serif;
 }
-.card {
-    background: rgba(214, 212, 201, 0.857);
-    padding: 70px;
-    width: 50%;
-    height: 50%;
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #d9761a;
+}
+
+/* 5. Contenido de la Derecha */
+.contenido-derecha {
+    padding: 30px;
+}
+
+.fondo {
+    width: 100%;
+    padding: 50px 30px;
+    box-sizing: border-box; /* Evita que el padding ensanche el banner */
+    text-align: right;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Assets/icons/fondo.jpg');
+    background-size: cover;
+    background-position: center;
     border-radius: 12px;
-    border-left: 5px solid;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    margin-bottom: 30px;
 }
 
-.categoria {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: bold;   
-    margin-bottom: 10px;
-    text-transform: uppercase;
-     justify-items: center;
+/* Cuadrícula de Álbumes Responsive */
+.albums {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 3fr));
+    gap: 20px;
+    padding: 20px;
 }
-.categoria.card:hover {
-    transform: translateY(-5px); /* Se eleva un poquito */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-.precio{
-    font-size: 20px;
-    background-color: #bec9b2;
-    border-radius: 10px;
-    margin: 10px auto;
 
+/* Diseño de la Tarjeta */
+.card {
+    background: radial-gradient(var(--card-bg),var(--bg-card));
+    padding: 16px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    text-align: center;
+   text-align: left;
+   height: 90%;
 }
-.album-link {
-    text-decoration: none; /* Quita el subrayado */
-    color: inherit;        /* Hereda el color blanco/claro que ya tenías */
-    display: block;        /* Hace que todo el espacio sea clickeable */
+
+.card:hover {
+    transform: translateY(-8px);
+    background-image: linear-gradient(rgb(37, 83, 76), rgb(31, 133, 133));
 }
-.homerun{
-    color: #db1111c5;
+
+.imagen {
+    width: 100%;
+    aspect-ratio: 1 /1;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
-.Back{
-    color: #707070;
+
+.precio {
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #1c421b;
+    border-radius: 6px;
+    padding: 5px;
+    margin-top: auto;
+    display: inline-block;
+    align-self: center;
+    text-align: center;
+    width: 90%;
 }
-.versus{
-    color: #2a4b80;
+.info h2,p,precio{
+    color: #ffffff;
+    font-size: 1 rem;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.visualizate{
-    color: #19191a;
-}
-.divide{
-    color: #0946a8e1;
-}
-.disco{
-    color: #c59e04;
-}
-.show{
-    color:#c2152099;
-}
-.recovery{
-    color: #497e62;
-}
-.soul{
-    color: #4f3b3b;
-}
-a{
-    color: #707070;
-}
+a{ text-decoration: none;}

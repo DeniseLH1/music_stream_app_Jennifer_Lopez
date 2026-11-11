@@ -19,33 +19,44 @@
 </head>
 <body>
     <!-- -------------------Link de arriba------------------ -->
-     <header class="global-header ">
-        <div class="opciones">
+       <header class="global-header ">
+        <div class="header-left">
             <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50px">
             <span>MusicStream</span>
-            <form class="search-bar">
-                  <input type="text" placeholder="Artists, albums, tracks" class="search-bar">
-                  </form>
-            <nav class="menu">
-                <img src="../Assets/icons/nueva-cuenta.png" width="30px" height="30px">
-            </nav>
-    </div> </header>
-<!-- ---------cuadro de texto antes de la imagen e info--------->
-    <h4><a href="../index.html">Home </a>/
-        <a href="../views/artist.html">Artist</a>  /
-    <a href="../views/album-detail.html">Cosmic Echoes</a></h4>
+        </div>
+            <nav class="menu-central">
+                <a href="../index.html">Home </a>/
+                <a href="../Artist/Paulo.html">Artist</a>  /
+                <a href="../views/album-detail.html">Cosmic Echoes</a>        </nav>
+        <div class="header-right">
+            <img src="../Assets/icons/nueva-cuenta.png" width="30px" height="30px">
+      </div></header>
+    <!-- ------------------------Info de la cancion----------------------->
     <main class="player-focus-view">
-    <a href="index.html" class="back-button">← Back to Store</a>
-<!-- ------------------------Info de la cancion----------------------->
     <div class="player-main-content">
         <section class="art-focal-point">
             <div class="glow-container">
                 <img src="../Assets/img/homerun.jpeg" alt="Album Art" class="main-art">
             </div>
-            <div class="track-info-large">
+            <div class="info">
                 <h1>Adán y Eva </h1>
-                <h2>Paulo Londra <span>/ Homerun</span></h2>
+                <h3>Paulo Londra <span>/ Adán y Eva</span></h3>
             </div>
+                <footer class="player-bar">
+                    <div class="player-controls">
+                        <div class="buttons-group">
+                            <img src="../Assets/icons/dar-un-paso-atras.png" class="control-icon" >
+                            <audio controls class="custom-audio-player">
+                                <source src="../Assets/sounds/Adan y Eva.mp3">
+                            </audio>
+                            <img src="../Assets/icons/dar-un-paso-adelante.png" class="control-icon" >
+                        </div>
+                    </div>
+                </footer>
+                <div class="volume-controls">
+                    <span><img src="../Assets/icons/volumen.png"ss></span>
+                    <span><input type="range" class="volume-range" min="0" max="100" value="70"></span>
+                </div>
         </section>
 <!-- --------------Tabla de las canciones que seguiran-------------------->
         <aside class="up-next-panel">
@@ -79,24 +90,6 @@
         </div>
         </aside>
     </div>
-<!-- ---------------Reproductor de musica----------------------------- -->
-  <footer class="player-bar">
-
-    <div class="player-controls">
-        <div class="buttons-group">
-            <img src="../Assets/icons/dar-un-paso-atras.png" class="control-icon" >
-            <audio controls class="custom-audio-player">
-                <source src="../Assets/sounds/Adan y Eva.mp3">
-            </audio>
-            <img src="../Assets/icons/dar-un-paso-adelante.png" class="control-icon" >
-        </div>
-    </div>
-
-    <div class="volume-controls">
-        <span><img src="../Assets/icons/volumen.png"ss></span>
-        <span><input type="range" class="volume-range" min="0" max="100" value="70"></span>
-    </div>
-</footer>
 </main>
 </body>
 </html>
