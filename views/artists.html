@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce a los artistas que forman parte del catálogo de MusicStream.">
+    <title>Artistas · MusicStream</title>
+    <link rel="stylesheet" href="../Css/artists.css">
+    <link rel="stylesheet" href="../Css/main.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50" height="50">
+            <span>MusicStream</span>
+        </div>
+        <nav class="menu-central" aria-label="Navegación principal">
+            <a href="../index.html">Descubrir</a>
+            <a href="artists.html" aria-current="page">Artistas</a>
+            <a href="library.html">Mi biblioteca</a>
+            <a href="cart.html">Carrito <span data-cart-count hidden></span></a>
+        </nav>
+        <div class="header-right">
+            <a href="../index.html">Volver a la tienda</a>
+        </div>
+    </header>
+
+    <main class="artists-page">
+        <header class="artists-heading">
+            <p class="artists-eyebrow">MÚSICA Y PERSONAS</p>
+            <h1>Artistas</h1>
+            <p>Explora quiénes están detrás de los álbumes del catálogo.</p>
+        </header>
+        <section class="artists-grid" data-artists-grid aria-label="Artistas del catálogo"></section>
+    </main>
+    <script src="../Js/store.js"></script>
+</body>
+</html>

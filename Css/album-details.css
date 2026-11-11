@@ -38,6 +38,17 @@
     overflow-wrap: anywhere;
 }
 
+.artist-name {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(166, 176, 190, 0.45);
+    text-underline-offset: 3px;
+}
+
+.artist-name:hover {
+    color: #9de7b2;
+}
+
 .btn-buy {
     width: 100%;
     background-color: #398043;

@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/Assets/icons/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Assets/icons/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/Assets/icons/favicon/site.webmanifest" />
-    <title>MusicStream - Store</title>
+    <title>MusicStream · Catálogo</title>
     <link rel="stylesheet" href="Css/main.css">
    
 </head>
@@ -23,15 +23,14 @@
             <img src="Assets/icons/Logo.png" alt="MusicStream Logo" width="50px">
             <span>MusicStream</span>
         </div>
-            <nav class="menu-central">
-                <a href="index.html" class="active">Discover</a>
-                <a href="#">Library</a>
-                <a href="index.html">Store</a>
+            <nav class="menu-central" aria-label="Navegación principal">
+                <a href="index.html" class="active" aria-current="page">Descubrir</a>
+                <a href="views/library.html">Mi biblioteca</a>
                 <a href="views/cart.html">Carrito <span data-cart-count hidden></span></a>
         </nav>
         <div class="header-right">
         <div class="search-bar">
-            <input type="search" placeholder="Artists, albums, tracks" aria-label="Buscar artistas, álbumes o canciones" data-album-search>
+            <input type="search" placeholder="Buscar álbum o artista" aria-label="Buscar álbum o artista" data-album-search>
             <img src="Assets/icons/nueva-cuenta.png" width="30px" height="30px">
         </div>
       </div></header>
@@ -39,25 +38,24 @@
 <div class="app-container">
     <div class="layout-principal">
     <details class="sidebar" open>
-        <summary class="sidebar-toggle" aria-label="Toggle navigation">
+        <summary class="sidebar-toggle" aria-label="Alternar navegación">
             <span class="toggle-icon" aria-hidden="true">☰</span>
-            <span class="sidebar-label">EXPLORE</span>
+            <span class="sidebar-label">EXPLORAR</span>
         </summary>
-        <nav class="sidebar-nav" aria-label="Explore">
-            <a href="#"><img src="Assets/icons/Chequesito.png" alt=""><span>New Releases</span></a>
-            <a href="#"><img src="Assets/icons/musica.png" alt=""><span>Genres</span></a>
-            <a href="#"><img src="Assets/icons/grafica.png" alt=""><span>Top Charts</span></a>
-            <a href="#"><img src="Assets/icons/microfono.png" alt=""><span>Artists</span></a>
+        <nav class="sidebar-nav" aria-label="Explorar">
+            <a href="views/library.html"><img src="Assets/icons/musica.png" alt=""><span>Mi biblioteca</span></a>
+            <a href="views/cart.html"><img src="Assets/icons/grafica.png" alt=""><span>Carrito</span></a>
+            <a href="views/artists.html"><img src="Assets/icons/microfono.png" alt=""><span>Artistas</span></a>
         </nav>
     </details>
     </div>
 <main class="contenido-derecha">
- <div class="fondo"> <br>
- <p><small>EDITOR'S PICK</small></p>
-<h1>The new album from Solar Flare</h1>
+ <div class="fondo">
+ <p><small>DESCUBRE TU PRÓXIMO FAVORITO</small></p>
+<h1>Música para cada momento</h1>
 </div>
-<h2>New albums This Week</h2>
- <section class="albums">
+<h2 id="catalogo">Álbumes disponibles</h2>
+ <section class="albums" aria-label="Catálogo de álbumes">
     <article class="categoria card homerun">
         <a href="views/album-detail.html?album=homerun" class="album-link">
             <img src="Assets/img/homerun.jpeg" class="imagen" alt="Portada de Homerun">
@@ -158,6 +156,7 @@
         <button class="catalog-add" type="button" data-add-to-cart="soul-intent">Agregar al carrito</button>
     </article>
 </section>
+<p class="search-empty" data-search-empty role="status" hidden>No encontramos álbumes con esa búsqueda.</p>
 </main></div>
 </div>
 <script src="Js/store.js"></script>

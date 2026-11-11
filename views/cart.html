@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/Assets/icons/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Assets/icons/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/Assets/icons/favicon/site.webmanifest" />
-    <title>Homerun</title>
+    <title>Carrito · MusicStream</title>
     <link rel="stylesheet" href="../Css/cart.css">
     <link rel="stylesheet" href="../Css/main.css">
 </head>
@@ -24,16 +24,15 @@
             <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50px">
             <span>MusicStream</span>
         </div>
-            <nav class="menu-central">
-            <a href="../index.html">Home</a>/ 
-            <a href="../views/cart.html">Your Cart <span data-cart-count hidden></span></a>
+            <nav class="menu-central" aria-label="Navegación principal">
+            <a href="../index.html">Descubrir</a>
+                <a href="../views/cart.html" aria-current="page">Carrito <span data-cart-count hidden></span></a>
+                <a href="library.html">Mi biblioteca</a>
         </nav>
         <div class="header-right">
-        <form class="search-bar">
-            <input type="text" placeholder="Artists, albums, tracks" class="search-bar">
-            <img src="../Assets/icons/nueva-cuenta.png" width="30px" height="30px">
-        </form>
-      </div></header>
+            <a href="../index.html">Volver a la tienda</a>
+        </div>
+    </header>
     <div class="cart-container">
     <header class="cart-header">
         <h1>Tu carrito musical</h1>

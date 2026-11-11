@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil, canciones destacadas y álbumes del artista en MusicStream.">
+    <title>Artista · MusicStream</title>
+    <link rel="stylesheet" href="../Css/artists.css">
+    <link rel="stylesheet" href="../Css/album-details.css">
+    <link rel="stylesheet" href="../Css/main.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50" height="50">
+            <span>MusicStream</span>
+        </div>
+        <nav class="menu-central" aria-label="Navegación principal">
+            <a href="../index.html">Descubrir</a>
+            <a href="artists.html">Artistas</a>
+            <a href="library.html">Mi biblioteca</a>
+            <a href="cart.html">Carrito <span data-cart-count hidden></span></a>
+        </nav>
+        <div class="header-right">
+            <a href="../index.html">Volver a la tienda</a>
+        </div>
+    </header>
+
+    <main class="artist-profile">
+        <nav class="artist-breadcrumb" aria-label="Ruta de navegación">
+            <a href="../index.html">Descubrir</a>
+            <span aria-hidden="true">/</span>
+            <a href="artists.html">Artistas</a>
+            <span aria-hidden="true">/</span>
+            <span data-artist-breadcrumb>Artista</span>
+        </nav>
+
+        <section class="artist-profile-hero">
+            <div class="artist-profile-portrait">
+                <img data-artist-image alt="" hidden>
+                <div class="artist-placeholder artist-profile-placeholder" data-artist-placeholder hidden></div>
+            </div>
+            <div class="artist-profile-copy">
+                <p class="artists-eyebrow" data-artist-style>ARTISTA</p>
+                <h1 data-artist-name>Artista</h1>
+                <p class="artist-biography" data-artist-bio></p>
+                <div class="artist-profile-actions">
+                    <button class="btn-icon" type="button" data-favorite-artist aria-pressed="false">♡ Favoritos</button>
+                    <button class="btn-icon" type="button" data-share>↗ Compartir</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="artist-section">
+            <div class="artist-section-heading">
+                <div>
+                    <p class="artists-eyebrow">DEL CATÁLOGO</p>
+                    <h2>Canciones destacadas</h2>
+                </div>
+            </div>
+            <div class="artist-track-list" data-artist-tracks aria-label="Canciones destacadas"></div>
+        </section>
+
+        <section class="artist-section">
+            <div class="artist-section-heading">
+                <div>
+                    <p class="artists-eyebrow">DISCOGRAFÍA</p>
+                    <h2>Álbumes disponibles</h2>
+                </div>
+            </div>
+            <div class="artist-albums-grid" data-artist-albums aria-label="Álbumes de este artista"></div>
+        </section>
+    </main>
+    <script src="../Js/store.js"></script>
+</body>
+</html>

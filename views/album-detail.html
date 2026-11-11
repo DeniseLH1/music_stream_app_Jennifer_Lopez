@@ -24,10 +24,9 @@
             <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50px">
             <span>MusicStream</span>
         </div>
-            <nav class="menu-central">
-                <a href="../index.html">Home </a>/
-                <a href="../Artist/Paulo.html">Artist</a>  /
-                <a href="../views/album-detail.html" data-album-breadcrumb>Álbum</a>
+            <nav class="menu-central" aria-label="Navegación principal">
+                <a href="../index.html">Descubrir</a>
+                <a href="library.html">Mi biblioteca</a>
                 <a href="cart.html">Carrito <span data-cart-count hidden></span></a>
         </nav>
         <div class="header-right">
@@ -41,14 +40,14 @@
         <!-- -----Info debajo de imagen------>
     <div class="album-meta">
     <h1 data-album-title>Homerun</h1>
-    <p data-album-artist>Paulo Londra</p>
+    <p><a class="artist-name" href="artists.html" data-artist-link data-album-artist>Paulo Londra</a></p>
     </div>
     <!-- -----------Botones------------- -->
     <div class="action-buttons">
     <button class="btn-buy" type="button" data-add-to-cart="homerun" data-default-label="Agregar álbum al carrito - Q100.00">Agregar álbum al carrito - Q100.00</button>
     <div class="secondary-actions">
-    <button class="btn-icon"> ♡  Wishlist</button>
-    <button class="btn-icon"> ➦ Share</button>
+    <button class="btn-icon" type="button" data-favorite-album aria-pressed="false">♡ Favoritos</button>
+    <button class="btn-icon" type="button" data-share>↗ Compartir</button>
     </div></div></div>
     <!-- .-----------TABLA-------------------- -->
     <div class="hero-right">

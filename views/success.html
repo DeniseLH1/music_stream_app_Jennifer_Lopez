@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/Assets/icons/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Assets/icons/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/Assets/icons/favicon/site.webmanifest" />
-    <title>Homerun</title>
+    <title>Pedido confirmado · MusicStream</title>
     <link rel="stylesheet" href="../Css/success.css">
     <link rel="stylesheet" href="../Css/main.css">
 </head>
@@ -23,29 +23,26 @@
             <img src="../Assets/icons/Logo.png" alt="MusicStream Logo">
             <span>MusicStream</span>
         </div>
-        <nav class="menu-central" aria-label="Main navigation">
-            <a href="../index.html">Discover</a>
-            <a href="#">Library</a>
-            <a href="../index.html">Store</a>
+        <nav class="menu-central" aria-label="Navegación principal">
+            <a href="../index.html">Descubrir</a>
+            <a href="library.html">Mi biblioteca</a>
+            <a href="../index.html">Tienda</a>
         </nav>
         <div class="header-right">
-            <form class="search-bar">
-                <input type="search" placeholder="Artists, albums, tracks" aria-label="Search music">
-            </form>
-            <img src="../Assets/icons/nueva-cuenta.png" alt="Account">
+            <a href="../index.html">Volver a la tienda</a>
         </div>
     </header>
 
     <div class="main-container">
         <details class="sidebar" open>
-            <summary class="sidebar-toggle" aria-label="Toggle library menu">
+            <summary class="sidebar-toggle" aria-label="Alternar menú de biblioteca">
                 <span class="toggle-icon" aria-hidden="true">☰</span>
-                <span class="sidebar-label">MY MUSIC</span>
+                <span class="sidebar-label">MI MÚSICA</span>
             </summary>
-            <nav class="sidebar-nav" aria-label="My music">
-                <a href="#"><span class="icon" aria-hidden="true">🕒</span><span>Recently Purchased</span></a>
-                <a href="#"><span class="icon" aria-hidden="true">💿</span><span>My Albums</span></a>
-                <a href="#"><span class="icon" aria-hidden="true">❤️</span><span>Liked Songs</span></a>
+            <nav class="sidebar-nav" aria-label="Mi música">
+                <a href="../views/library.html"><span class="icon" aria-hidden="true">♡</span><span>Mi biblioteca</span></a>
+                <a href="../views/artists.html"><span class="icon" aria-hidden="true">♫</span><span>Artistas</span></a>
+                <a href="../views/cart.html"><span class="icon" aria-hidden="true">🛒</span><span>Carrito</span></a>
             </nav>
         </details>
 

@@ -74,15 +74,54 @@ const PRODUCTS = [
         ]
     },
     {
-        id: "soul-intent", title: "Soul Intent", artist: "Soul Intent", price: 10000, image: "soul intent.jpeg",
-        description: "Soul Intent fue un grupo de hip hop de Detroit asociado a Eminem y Proof. Su lanzamiento de 1995 contiene dos canciones.",
+        id: "soul-intent", title: "Soul Intent", artist: "Eminem", price: 10000, image: "soul intent.jpeg",
+        description: "Lanzamiento de Eminem de 1995 con dos canciones: “F#@!in' Backstabber” y “Biterphobia”.",
         tracks: [["F#@!in' Backstabber", "4:45"], ["Biterphobia", "3:38"]]
     }
 ];
 
 const CART_KEY = "musicstream-cart";
 const ORDER_KEY = "musicstream-last-order";
+const FAVORITES_KEY = "musicstream-favorites";
 const TAX_RATE = 0.06;
+const ARTISTS = [
+    {
+        id: "paulo-londra",
+        title: "Paulo Londra",
+        style: "Trap, rap y reguetón",
+        description: "Cantante y compositor argentino. Su catálogo combina trap latino, rap y reguetón, con canciones que pasan de ritmos melódicos a bases urbanas.",
+        image: "../Assets/Art/Paulo.jpeg"
+    },
+    {
+        id: "gente-de-zona",
+        title: "Gente de Zona",
+        style: "Reguetón y música tropical",
+        description: "Dúo cubano conocido por mezclar ritmos urbanos con sonidos tropicales. En el catálogo aparece su álbum Visualízate.",
+        image: "../Assets/Art/Gente-de-zona.jpg"
+    },
+    {
+        id: "ed-sheeran",
+        title: "Ed Sheeran",
+        style: "Pop y folk",
+        description: "Cantautor británico que combina pop, folk y arreglos acústicos. El álbum ÷ reúne canciones de distintos matices y ritmos.",
+        image: "../Assets/Art/ed-sheeran.jpg"
+    },
+    {
+        id: "daddy-yankee",
+        title: "Daddy Yankee",
+        style: "Reguetón",
+        description: "Cantante puertorriqueño reconocido por su trayectoria en el reguetón. El disco duro fue anunciado, pero no se publicó como un álbum oficial.",
+        featuredMessage: "El disco duro no se publicó y no hay una lista oficial de canciones para mostrar.",
+        image: "../Assets/Art/dady-tankee.jpeg"
+    },
+    {
+        id: "eminem",
+        title: "Eminem",
+        style: "Hip hop y rap",
+        description: "Rapero y compositor estadounidense. The Eminem Show, Recovery y el lanzamiento Soul Intent forman parte del catálogo de MusicStream.",
+        image: "../Assets/Art/eminem.webp"
+    }
+];
 const currency = new Intl.NumberFormat("es-GT", {
     style: "currency",
     currency: "GTQ",
@@ -91,6 +130,91 @@ const currency = new Intl.NumberFormat("es-GT", {
 
 function formatPrice(cents) {
     return currency.format(cents / 100);
+}
+
+function getFavorites() {
+    const stored = readStorage(FAVORITES_KEY);
+    if (!stored) return [];
+
+    try {
+        const parsed = JSON.parse(stored);
+        if (!Array.isArray(parsed)) throw new TypeError("Favorite data must be an array.");
+
+        const validKeys = new Set([
+            ...PRODUCTS.map((product) => `album:${product.id}`),
+            ...ARTISTS.map((artist) => `artist:${artist.id}`)
+        ]);
+        return [...new Set(parsed.filter((key) => typeof key === "string" && validKeys.has(key)))];
+    } catch (error) {
+        console.error("MusicStream found invalid favorites in local storage.", error);
+        announce("La biblioteca guardada estaba dañada y se inició una nueva.", "error");
+        writeStorage(FAVORITES_KEY, []);
+        return [];
+    }
+}
+
+function updateFavoriteButtons() {
+    const favorites = new Set(getFavorites());
+    document.querySelectorAll("[data-favorite-album]").forEach((button) => {
+        const active = favorites.has(`album:${button.dataset.favoriteAlbum}`);
+        button.textContent = active ? "♥ En favoritos" : "♡ Favoritos";
+        button.setAttribute("aria-label", active ? "Quitar álbum de favoritos" : "Agregar álbum a favoritos");
+        button.setAttribute("aria-pressed", String(active));
+    });
+    document.querySelectorAll("[data-favorite-artist]").forEach((button) => {
+        const active = favorites.has(`artist:${button.dataset.favoriteArtist}`);
+        button.textContent = active ? "♥ En favoritos" : "♡ Favoritos";
+        button.setAttribute("aria-label", active ? "Quitar artista de favoritos" : "Agregar artista a favoritos");
+        button.setAttribute("aria-pressed", String(active));
+    });
+}
+
+function toggleFavorite(type, id) {
+    const key = `${type}:${id}`;
+    const valid = type === "album"
+        ? PRODUCTS.some((product) => product.id === id)
+        : ARTISTS.some((artist) => artist.id === id);
+    if (!valid) {
+        announce("No se pudo actualizar este favorito.", "error");
+        return;
+    }
+
+    const favorites = getFavorites();
+    const index = favorites.indexOf(key);
+    const added = index === -1;
+    if (added) favorites.push(key);
+    else favorites.splice(index, 1);
+
+    if (!writeStorage(FAVORITES_KEY, favorites)) return;
+    updateFavoriteButtons();
+    renderLibrary();
+}
+
+async function shareCurrentPage(button) {
+    const shareData = {
+        title: button.dataset.shareTitle || document.title,
+        url: button.dataset.shareUrl || window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(shareData.url);
+            const originalLabel = button.dataset.defaultLabel || button.textContent;
+            button.dataset.defaultLabel = originalLabel;
+            button.textContent = "Enlace copiado ✓";
+            window.setTimeout(() => {
+                button.textContent = originalLabel;
+            }, 1600);
+        } else {
+            announce("Este navegador no permite compartir ni copiar el enlace automáticamente.", "error");
+        }
+    } catch (error) {
+        if (error?.name === "AbortError") return;
+        console.error("MusicStream could not share this page.", error);
+        announce("No se pudo compartir el enlace. Inténtalo de nuevo.", "error");
+    }
 }
 
 function announce(message, type = "info") {
@@ -409,14 +533,27 @@ function renderAlbumDetail() {
     addButton.dataset.addToCart = product.id;
     addButton.dataset.defaultLabel = `Agregar álbum al carrito - ${formatPrice(product.price)}`;
     addButton.textContent = addButton.dataset.defaultLabel;
+    const favoriteButton = document.querySelector("[data-favorite-album]");
+    if (favoriteButton) favoriteButton.dataset.favoriteAlbum = product.id;
+    const shareButton = document.querySelector("[data-share]");
+    if (shareButton) shareButton.dataset.shareTitle = product.title;
 
     const breadcrumb = document.querySelector("[data-album-breadcrumb]");
-    breadcrumb.textContent = product.title;
+    if (breadcrumb) breadcrumb.textContent = product.title;
+    const artistLink = document.querySelector("[data-artist-link]");
+    if (artistLink) {
+        const artist = ARTISTS.find((item) => item.title === product.artist);
+        artistLink.href = artist
+            ? `artist-detail.html?artist=${encodeURIComponent(artist.id)}`
+            : "artists.html";
+        artistLink.textContent = product.artist;
+    }
 
     const trackContainer = document.querySelector("[data-track-rows]");
     const playerBar = document.querySelector(".player-bar");
     const artistBio = document.querySelector("[data-artist-bio]");
     trackContainer.replaceChildren();
+    updateFavoriteButtons();
 
     if (!product.tracks) {
         const empty = document.createElement("p");
@@ -458,7 +595,229 @@ function renderAlbumDetail() {
     });
 }
 
+function renderLibrary() {
+    const container = document.querySelector("[data-library-items]");
+    if (!container) return;
+
+    const favorites = getFavorites();
+    container.replaceChildren();
+    const emptyState = document.querySelector("[data-library-empty]");
+    emptyState.hidden = favorites.length > 0;
+
+    favorites.forEach((key) => {
+        const [type, id] = key.split(":");
+        const item = type === "album"
+            ? PRODUCTS.find((product) => product.id === id)
+            : ARTISTS.find((artist) => artist.id === id);
+        if (!item) return;
+
+        const card = document.createElement("article");
+        card.className = "library-card";
+        const link = document.createElement("a");
+        link.className = "library-card-link";
+        link.href = type === "album"
+            ? `album-detail.html?album=${encodeURIComponent(item.id)}`
+            : `artist-detail.html?artist=${encodeURIComponent(item.id)}`;
+        const details = document.createElement("span");
+        details.className = "library-card-details";
+        if (type === "album" || item.image) {
+            const image = document.createElement("img");
+            image.src = type === "album" ? `../Assets/img/${item.image}` : item.image;
+            image.alt = type === "album" ? `Portada de ${item.title}` : `Foto de ${item.title}`;
+            link.append(image);
+        } else {
+            const placeholder = document.createElement("span");
+            placeholder.className = "artist-placeholder library-artist-placeholder";
+            placeholder.setAttribute("aria-hidden", "true");
+            placeholder.textContent = getArtistInitials(item.title);
+            link.append(placeholder);
+        }
+        const title = document.createElement("strong");
+        title.textContent = item.title;
+        const subtitle = document.createElement("small");
+        subtitle.textContent = type === "album" ? item.artist : item.style;
+        details.append(title, subtitle);
+        link.append(details);
+
+        const actions = document.createElement("div");
+        actions.className = "library-card-actions";
+        if (type === "album") {
+            const addButton = document.createElement("button");
+            addButton.type = "button";
+            addButton.className = "library-action";
+            addButton.dataset.addToCart = item.id;
+            addButton.textContent = "Agregar al carrito";
+            actions.append(addButton);
+        }
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "library-action library-remove";
+        removeButton.dataset.removeFavorite = key;
+        removeButton.textContent = "Quitar";
+        removeButton.setAttribute("aria-label", `Quitar ${item.title} de favoritos`);
+        actions.append(removeButton);
+        card.append(link, actions);
+        container.append(card);
+    });
+}
+
+function getArtistInitials(name) {
+    return name.split(/\s+/).slice(0, 2).map((word) => word[0]).join("").toLocaleUpperCase("es");
+}
+
+function renderArtists() {
+    const container = document.querySelector("[data-artists-grid]");
+    if (!container) return;
+
+    container.replaceChildren();
+    ARTISTS.forEach((artist) => {
+        const card = document.createElement("article");
+        card.className = "artist-card";
+        const link = document.createElement("a");
+        link.className = "artist-card-link";
+        link.href = `artist-detail.html?artist=${encodeURIComponent(artist.id)}`;
+        if (artist.image) {
+            const image = document.createElement("img");
+            image.className = "artist-card-image";
+            image.src = artist.image;
+            image.alt = `Foto de ${artist.title}`;
+            link.append(image);
+        } else {
+            const placeholder = document.createElement("span");
+            placeholder.className = "artist-placeholder artist-card-image";
+            placeholder.setAttribute("aria-hidden", "true");
+            placeholder.textContent = getArtistInitials(artist.title);
+            link.append(placeholder);
+        }
+        const name = document.createElement("h2");
+        name.textContent = artist.title;
+        const style = document.createElement("p");
+        style.textContent = artist.style;
+        const action = document.createElement("span");
+        action.className = "artist-card-action";
+        action.textContent = "Ver artista";
+        link.append(name, style, action);
+        card.append(link);
+        container.append(card);
+    });
+}
+
+function renderArtistDetail() {
+    const nameElement = document.querySelector("[data-artist-name]");
+    if (!nameElement) return;
+
+    const artistId = new URLSearchParams(window.location.search).get("artist");
+    const artist = ARTISTS.find((item) => item.id === artistId);
+    if (!artist) {
+        window.location.replace("artists.html");
+        return;
+    }
+
+    document.title = `${artist.title} · MusicStream`;
+    nameElement.textContent = artist.title;
+    document.querySelector("[data-artist-style]").textContent = artist.style;
+    document.querySelector("[data-artist-bio]").textContent = artist.description;
+    document.querySelector("[data-artist-breadcrumb]").textContent = artist.title;
+
+    const image = document.querySelector("[data-artist-image]");
+    const placeholder = document.querySelector("[data-artist-placeholder]");
+    if (artist.image) {
+        image.src = artist.image;
+        image.alt = `Foto de ${artist.title}`;
+        image.hidden = false;
+        placeholder.hidden = true;
+    } else {
+        image.hidden = true;
+        placeholder.hidden = false;
+        placeholder.textContent = getArtistInitials(artist.title);
+        placeholder.setAttribute("aria-label", `Espacio reservado para la foto de ${artist.title}`);
+    }
+
+    const favoriteButton = document.querySelector("[data-favorite-artist]");
+    favoriteButton.dataset.favoriteArtist = artist.id;
+    const shareButton = document.querySelector("[data-share]");
+    shareButton.dataset.shareTitle = artist.title;
+    updateFavoriteButtons();
+
+    const albums = PRODUCTS.filter((product) => product.artist === artist.title);
+    const albumContainer = document.querySelector("[data-artist-albums]");
+    albumContainer.replaceChildren();
+    albums.forEach((album) => {
+        const link = document.createElement("a");
+        link.className = "artist-album-card";
+        link.href = `album-detail.html?album=${encodeURIComponent(album.id)}`;
+        const cover = document.createElement("img");
+        cover.src = `../Assets/img/${album.image}`;
+        cover.alt = `Portada de ${album.title}`;
+        const title = document.createElement("strong");
+        title.textContent = album.title;
+        const artistName = document.createElement("small");
+        artistName.textContent = artist.title;
+        link.append(cover, title, artistName);
+        albumContainer.append(link);
+    });
+
+    const trackContainer = document.querySelector("[data-artist-tracks]");
+    trackContainer.replaceChildren();
+    const featuredTracks = albums.flatMap((album) => (album.tracks || []).map((track) => ({
+        title: Array.isArray(track) ? track[0] : track,
+        duration: Array.isArray(track) ? track[1] || "—" : "—",
+        album
+    })));
+    const uniqueTracks = [...new Map(featuredTracks.map((track) => [
+        track.title.toLocaleLowerCase("es"),
+        track
+    ])).values()].slice(0, 8);
+
+    if (uniqueTracks.length === 0) {
+        const message = document.createElement("p");
+        message.className = "artist-empty";
+        message.textContent = artist.featuredMessage || "Las canciones destacadas de este artista estarán disponibles próximamente.";
+        trackContainer.append(message);
+        return;
+    }
+
+    uniqueTracks.forEach((track, index) => {
+        const link = document.createElement("a");
+        link.className = "artist-track-row";
+        link.href = `album-detail.html?album=${encodeURIComponent(track.album.id)}`;
+        const number = document.createElement("span");
+        number.textContent = String(index + 1);
+        const title = document.createElement("strong");
+        title.textContent = track.title;
+        const albumTitle = document.createElement("span");
+        albumTitle.textContent = track.album.title;
+        const duration = document.createElement("span");
+        duration.textContent = track.duration;
+        link.append(number, title, albumTitle, duration);
+        trackContainer.append(link);
+    });
+}
+
 document.addEventListener("click", (event) => {
+    const favoriteButton = event.target.closest("[data-favorite-album], [data-favorite-artist]");
+    if (favoriteButton) {
+        const type = favoriteButton.hasAttribute("data-favorite-album") ? "album" : "artist";
+        const id = type === "album"
+            ? favoriteButton.dataset.favoriteAlbum
+            : favoriteButton.dataset.favoriteArtist;
+        toggleFavorite(type, id);
+        return;
+    }
+
+    const shareButton = event.target.closest("[data-share]");
+    if (shareButton) {
+        void shareCurrentPage(shareButton);
+        return;
+    }
+
+    const removeFavoriteButton = event.target.closest("[data-remove-favorite]");
+    if (removeFavoriteButton) {
+        const [type, id] = removeFavoriteButton.dataset.removeFavorite.split(":");
+        toggleFavorite(type, id);
+        return;
+    }
+
     const checkoutButton = event.target.closest("[data-checkout]");
     if (checkoutButton) {
         if (getCart().length === 0) {
@@ -516,6 +875,10 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCheckout();
     renderSuccess();
     renderAlbumDetail();
+    renderLibrary();
+    renderArtists();
+    renderArtistDetail();
+    updateFavoriteButtons();
     document.querySelectorAll("[data-product-price]").forEach((node) => {
         const product = PRODUCTS.find((item) => item.id === node.dataset.productPrice);
         if (product) node.textContent = formatPrice(product.price);
@@ -525,9 +888,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (search) {
         search.addEventListener("input", () => {
             const query = search.value.trim().toLocaleLowerCase("es");
-            document.querySelectorAll(".categoria.card").forEach((card) => {
+            const cards = [...document.querySelectorAll(".categoria.card")];
+            cards.forEach((card) => {
                 card.hidden = !card.textContent.toLocaleLowerCase("es").includes(query);
             });
+            const emptyState = document.querySelector("[data-search-empty]");
+            if (emptyState) emptyState.hidden = cards.some((card) => !card.hidden);
         });
     }
 

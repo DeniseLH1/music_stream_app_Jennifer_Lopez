@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu biblioteca de álbumes y artistas favoritos en MusicStream.">
+    <title>Mi biblioteca · MusicStream</title>
+    <link rel="stylesheet" href="../Css/library.css">
+    <link rel="stylesheet" href="../Css/main.css">
+</head>
+<body>
+    <header class="global-header">
+        <div class="header-left">
+            <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50" height="50">
+            <span>MusicStream</span>
+        </div>
+        <nav class="menu-central" aria-label="Navegación principal">
+            <a href="../index.html">Descubrir</a>
+            <a href="library.html" aria-current="page">Mi biblioteca</a>
+            <a href="cart.html">Carrito <span data-cart-count hidden></span></a>
+        </nav>
+        <div class="header-right">
+            <a href="../index.html">Volver a la tienda</a>
+        </div>
+    </header>
+
+    <main class="library-page">
+        <header class="library-heading">
+            <p class="library-eyebrow">TU COLECCIÓN</p>
+            <h1>Mi biblioteca</h1>
+            <p>Álbumes y artistas que guardaste para volver a ellos.</p>
+        </header>
+        <section class="library-grid" data-library-items aria-label="Elementos favoritos" aria-live="polite"></section>
+        <section class="library-empty" data-library-empty>
+            <h2>Tu biblioteca está esperando música</h2>
+            <p>Guarda tus álbumes o artistas favoritos y aparecerán aquí.</p>
+            <a class="library-action" href="../index.html">Explorar álbumes</a>
+        </section>
+    </main>
+    <script src="../Js/store.js"></script>
+</body>
+</html>
