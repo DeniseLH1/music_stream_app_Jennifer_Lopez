@@ -36,7 +36,7 @@
             <img src="../Assets/icons/nueva-cuenta.png" width="30px" height="30px">
         </form>
       </div></header>
-    <div class="app-container">
+    <div class="checkout-container">
     <main class="cart-checkout-view">
         <header class="view-header">
             <h1>Secure Checkout</h1>
@@ -53,22 +53,22 @@
                     
                     <form class="payment-form">
                         <div class="input-group">
-                            <label>Card Number</label>
-                            <input type="text" placeholder="0000 0000 0000 0000">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
                         </div>
                         <div class="input-row">
                             <div class="input-group">
-                                <label>Expiration (MM/YY)</label>
-                                <input type="text" placeholder="MM/YY">
+                                <label for="card-expiration">Expiration (MM/YY)</label>
+                                <input type="text" id="card-expiration" placeholder="MM/YY">
                             </div>
                             <div class="input-group">
-                                <label>CVC</label>
-                                <input type="password" placeholder="123">
+                                <label for="card-cvc">CVC</label>
+                                <input type="password" id="card-cvc" placeholder="123">
                             </div>
-                             <div class="input-group">
-                            <label>Name on Card</label>
-                            <input type="text" placeholder="John Doe">
                         </div>
+                        <div class="input-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" placeholder="John Doe">
                         </div>
                     </form>
                 </div>
@@ -77,7 +77,7 @@
                     <h3>Billing Address</h3>
                     <form class="address-form">
                         <div class="input-group">
-                            <label>Country/Region</label>
+                            <label for="region">Country/Region</label>
                             <input type="text" id="region" name="region" list="region-list" placeholder="Select your country">
                             <datalist id="region-list">
                             <option value="Guatemala">
@@ -86,22 +86,18 @@
                              </datalist>
                         </div>
                         <div class="input-group">
-                            <label>Street Address</label>
-                            <input type="text" placeholder="123 Music Lane">
+                            <label for="street-address">Street Address</label>
+                            <input type="text" id="street-address" placeholder="123 Music Lane">
                         </div>
                         <div class="input-row">
                             <div class="input-group">
-                                <label>City</label>
-                                <input type="text" placeholder="Guatemala City">
+                                <label for="city">City</label>
+                                <input type="text" id="city" placeholder="Guatemala City">
                             </div>
                             <div class="input-group">
-                                <label>Postal Code</label>
-                                <input type="text" placeholder="01001">
+                                <label for="postal-code">Postal Code</label>
+                                <input type="text" id="postal-code" placeholder="01001">
                             </div>
-                              <div class="input-group">
-                            <label>Postal Code</label>
-                            <input type="text" placeholder="37203">
-                        </div>
                         </div>
                     </form>
                 </div>
@@ -139,7 +135,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-place-order"><a href="../views/success.html">Place Order & Pay Q112.00 🔒</a></button>
+                    <a href="../views/success.html" class="btn-place-order">Place Order &amp; Pay Q212.00 🔒</a>
                     <p class="terms-text">By placing this order, you agree to our Terms of Service.</p>
                 </div>
             </aside>
