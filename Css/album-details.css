@@ -1,46 +1,57 @@
-/* Contenedor Principal con Grid */
 .album-detail-view {
     background-color: #0f172a;
     color: white;
-    padding: 40px;
-    min-height: 100vh;
-    padding-bottom: 100px; /* Espacio para la barra del reproductor */
+    padding: clamp(16px, 3vw, 40px);
+    min-height: calc(100vh - 64px);
+    padding-bottom: 120px;
 }
 
 .album-hero {
     display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 50px;
+    grid-template-columns: minmax(220px, min(30vw, 350px)) minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 50px);
+    align-items: start;
 }
 
-/* Columna Izquierda: Arte y Botones */
+.hero-left,
+.hero-right {
+    min-width: 0;
+}
+
 .main-cover {
     width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .album-meta h1 {
-    font-size: 2.5rem;
-    margin: 20px 0 5px 0;
-    
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    margin: 20px 0 5px;
 }
 
 .album-meta p {
     color: #a6b0be;
     margin-bottom: 30px;
+    overflow-wrap: anywhere;
 }
 
 .btn-buy {
     width: 100%;
-    background-color: #398043; /* Azul Eléctrico */
+    background-color: #398043;
     color: white;
-    padding: 15px;
+    padding: 13px 16px;
     border: none;
     border-radius: 25px;
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 15px;
+}
+
+.btn-buy:hover {
+    background-color: #469451;
 }
 
 .secondary-actions {
@@ -58,56 +69,86 @@
     cursor: pointer;
 }
 
-/* Columna Derecha: Tracklist */
 .tracklist-container {
     margin-top: 20px;
-    background-color: rgba(44, 45, 46, 0.5);
+    width: 100%;
+    background-color: #1e293b;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .track-header, .track-row {
     display: grid;
-    grid-template-columns: 40px 1fr 1fr 80px;
-    padding: 12px 20px;
+    grid-template-columns: 36px minmax(0, 1.4fr) minmax(100px, 1fr) 56px;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 11px clamp(12px, 1.5vw, 20px);
     border-bottom: 1px solid #3c3f42;
-    font-size: 0.9rem;
+    font-size: clamp(0.78rem, 0.9vw, 0.9rem);
 }
 
 .track-header {
     color: #64748b;
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+.track-header span,
+.track-row span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.track-header span:last-child,
+.track-row span:last-child {
+    text-align: right;
 }
 
 .track-row:hover {
-    background-color: #334155;
+    background-color: #29384b;
     cursor: pointer;
 }
 
 .t-title {
     font-weight: bold;
 }
-.link{
-    text-decoration: none; /* Quita el subrayado */
-    color: inherit;        /* Hereda el color blanco/claro que ya tenías */
-    display: block; 
+.link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
 }
-/* Barra de Reproducción Inferior */
+
 .player-bar {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100px;
-    background: #1e293b; /* Color oscuro profundo */
+    min-height: 82px;
+    background: #1e293b;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
+    gap: 20px;
+    padding: 10px clamp(16px, 3vw, 30px);
     border-top: 1px solid #334155;
     z-index: 1000;
 }
 
-/* Efecto en la imagen del álbum */
+.current-track {
+    flex: 0 0 auto;
+}
+
+.current-track img {
+    display: block;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
 .album-mini-resizer {
     width: 70px;
     height: 70px;
@@ -118,26 +159,15 @@
 
 .album-mini-resizer:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Brillo azul */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
 }
 
-/* Controles de reproducción */
-.player-bar{
-    height: 1%;
-    width: 95%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 40px;
-
-
-}
 .player-controls {
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    min-width: 0;
 }
 
 .buttons-group {
@@ -161,24 +191,132 @@
 /* Estilizar el reproductor de audio nativo */
 .custom-audio-player {
     height: 40px;
-    filter: sepia(700%) saturate(100%) brightness(100%) invert(100%);
-
+    max-width: min(420px, 55vw);
 }
 
-/* Barra de volumen interactiva */
 .volume-range {
-   height: 5px;
+    width: clamp(70px, 12vw, 140px);
+    height: 5px;
     cursor: pointer;
-    accent-color: #286d2b; /* Color azul del control */
+    accent-color: #398043;
 }
+
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.volume-controls img {
+    width: 22px;
+    height: 22px;
+}
+
 .track-text {
-    margin-left: 15px;
+    min-width: 0;
+    margin-left: 0;
     color: white;
 }
 
-h4 a{
+.track-text p,
+.track-text small {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+h4 a {
     color: #2f7445;
     justify-content: space-around;
     padding: 10px;
-    right: 0px;
+    right: 0;
+}
+
+.artist-bio {
+    margin-top: 16px;
+}
+
+.artist-bio p {
+    color: #a6b0be;
+    max-width: 75ch;
+}
+
+@media (max-width: 760px) {
+    .album-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-left {
+        display: grid;
+        grid-template-columns: minmax(120px, 34vw) minmax(0, 1fr);
+        align-items: center;
+        gap: 16px;
+    }
+
+    .album-meta h1 {
+        margin-top: 0;
+    }
+
+    .album-meta p {
+        margin-bottom: 12px;
+    }
+
+    .action-buttons {
+        grid-column: 1 / -1;
+    }
+
+    .track-header,
+    .track-row {
+        grid-template-columns: 30px minmax(0, 1fr) 52px;
+        gap: 8px;
+        padding-inline: 12px;
+    }
+
+    .track-header span:nth-child(3),
+    .track-row span:nth-child(3) {
+        display: none;
+    }
+
+    .player-bar {
+        gap: 10px;
+    }
+
+    .track-text {
+        display: none;
+    }
+
+    .buttons-group {
+        gap: 8px;
+    }
+
+    .control-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .custom-audio-player {
+        max-width: 55vw;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-left {
+        grid-template-columns: minmax(110px, 38vw) minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .album-meta h1 {
+        font-size: 1.5rem;
+    }
+
+    .album-meta p {
+        font-size: 0.85rem;
+    }
+
+    .volume-controls {
+        display: none;
+    }
 }

@@ -18,30 +18,36 @@
     <link rel="stylesheet" href="../Css/main.css">
 </head>
 <body>
-    <header class="global-header ">
-        <div class="opciones">
-            <img src="../Assets/icons/Logo.png" alt="MusicStream Logo" width="50px">
+    <header class="global-header">
+        <div class="header-left">
+            <img src="../Assets/icons/Logo.png" alt="MusicStream Logo">
             <span>MusicStream</span>
-            <nav class="menu">
-                <a href="index.html" class="active">Discover</a>
-                <a href="#">Library</a>
-                <a href="index.html">Store</a>
-            </nav>
-  <form class="search-bar">
-        <input type="text" placeholder="Artists, albums, tracks" class="search-bar">
-        </form>
-        <img src="../Assets/icons/nueva-cuenta.png" width="30px" height="30px">
-    </div> </header>
+        </div>
+        <nav class="menu-central" aria-label="Main navigation">
+            <a href="../index.html">Discover</a>
+            <a href="#">Library</a>
+            <a href="../index.html">Store</a>
+        </nav>
+        <div class="header-right">
+            <form class="search-bar">
+                <input type="search" placeholder="Artists, albums, tracks" aria-label="Search music">
+            </form>
+            <img src="../Assets/icons/nueva-cuenta.png" alt="Account">
+        </div>
+    </header>
 
     <div class="main-container">
-        <aside class="sidebar">
-            <p class="sidebar-title">MY MUSIC</p>
-            <nav class="sidebar-nav">
-                <a href="#"><span class="icon">🕒</span> Recently Purchased</a>
-                <a href="#"><span class="icon">💿</span> My Albums</a>
-                <a href="#"><span class="icon">❤️</span> Liked Songs</a>
+        <details class="sidebar" open>
+            <summary class="sidebar-toggle" aria-label="Toggle library menu">
+                <span class="toggle-icon" aria-hidden="true">☰</span>
+                <span class="sidebar-label">MY MUSIC</span>
+            </summary>
+            <nav class="sidebar-nav" aria-label="My music">
+                <a href="#"><span class="icon" aria-hidden="true">🕒</span><span>Recently Purchased</span></a>
+                <a href="#"><span class="icon" aria-hidden="true">💿</span><span>My Albums</span></a>
+                <a href="#"><span class="icon" aria-hidden="true">❤️</span><span>Liked Songs</span></a>
             </nav>
-        </aside>
+        </details>
 
         <main class="success-view">
             <div class="success-card">
