@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +26,8 @@
             <span>MusicStream</span>
         </div>
             <nav class="menu-central">
-                <a href="../views/cart.html">Cart </a>
-                <a href="../views/payment.html">Payment</a> 
-                <a href="../views/success.html">Complement</a>
+                <a href="../views/cart.html">Carrito <span data-cart-count hidden></span></a>
+                <a href="../views/payment.html">Checkout de prueba</a>
         </nav>
         <div class="header-right">
         <form class="search-bar">
@@ -39,108 +38,87 @@
     <div class="checkout-container">
     <main class="cart-checkout-view">
         <header class="view-header">
-            <h1>Secure Checkout</h1>
+            <h1>Checkout de prueba</h1>
+            <p>Completa la simulación con datos ficticios. No se realizará ningún cobro.</p>
         </header>
 
-        <div class="checkout-grid">
+        <form class="checkout-grid" data-checkout-form>
             <section class="forms-column">
                 <div class="checkout-card">
-                    <h3>Pay with Credit Card
-                        <img src="../Assets/icons/visa.png">
-                        <img src="../Assets/icons/mastercad.png">
-                        <img src="../Assets/icons/american-express.png" >
-                    </h3>
-                    
-                    <form class="payment-form">
+                    <h3>Pago con tarjeta · Simulación</h3>
+                    <div class="payment-brands" aria-label="Tarjetas de ejemplo">
+                        <img src="../Assets/icons/visa.png" alt="Visa">
+                        <img src="../Assets/icons/mastercad.png" alt="Mastercard">
+                        <img src="../Assets/icons/american-express.png" alt="American Express">
+                    </div>
+                    <div class="input-group">
+                        <label for="card-number">Número de tarjeta ficticio</label>
+                        <input type="text" id="card-number" name="cardNumber" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="off" maxlength="23" pattern="[0-9 ]+" data-demo-card-number required>
+                    </div>
+                    <div class="input-row">
                         <div class="input-group">
-                            <label for="card-number">Card Number</label>
-                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
-                        </div>
-                        <div class="input-row">
-                            <div class="input-group">
-                                <label for="card-expiration">Expiration (MM/YY)</label>
-                                <input type="text" id="card-expiration" placeholder="MM/YY">
-                            </div>
-                            <div class="input-group">
-                                <label for="card-cvc">CVC</label>
-                                <input type="password" id="card-cvc" placeholder="123">
-                            </div>
+                            <label for="card-expiration">Vencimiento (MM/AA)</label>
+                            <input type="text" id="card-expiration" name="cardExpiration" placeholder="MM/AA" inputmode="numeric" autocomplete="off" maxlength="5" pattern="(0[1-9]|1[0-2])/[0-9]{2}" data-demo-expiration required>
                         </div>
                         <div class="input-group">
-                            <label for="card-name">Name on Card</label>
-                            <input type="text" id="card-name" placeholder="John Doe">
+                            <label for="card-cvc">CVC ficticio</label>
+                            <input type="password" id="card-cvc" name="cardCvc" placeholder="123" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{3,4}" data-demo-cvc required>
                         </div>
-                    </form>
+                    </div>
+                    <div class="input-group">
+                        <label for="card-name">Nombre</label>
+                        <input type="text" id="card-name" name="cardName" placeholder="Nombre" autocomplete="off" maxlength="80" required>
+                    </div>
                 </div>
 
                 <div class="checkout-card">
-                    <h3>Billing Address</h3>
-                    <form class="address-form">
+                    <h3>Dirección de facturación de prueba</h3>
+                    <div class="input-group">
+                        <label for="region">País o región</label>
+                        <select id="region" name="region" autocomplete="off" required>
+                            <option value="">Selecciona un país</option>
+                            <option value="Guatemala">Guatemala</option>
+                            <option value="Mexico">México</option>
+                            <option value="Estados Unidos">Estados Unidos</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="street-address">Dirección</label>
+                        <input type="text" id="street-address" name="streetAddress" placeholder="Calle y número" autocomplete="off" maxlength="120" required>
+                    </div>
+                    <div class="input-row">
                         <div class="input-group">
-                            <label for="region">Country/Region</label>
-                            <input type="text" id="region" name="region" list="region-list" placeholder="Select your country">
-                            <datalist id="region-list">
-                            <option value="Guatemala">
-                            <option value="Mexico">
-                            <option value="Estados Unidos">
-                             </datalist>
+                            <label for="city">Ciudad</label>
+                            <input type="text" id="city" name="city" placeholder="Ciudad" autocomplete="off" maxlength="80" required>
                         </div>
                         <div class="input-group">
-                            <label for="street-address">Street Address</label>
-                            <input type="text" id="street-address" placeholder="123 Music Lane">
+                            <label for="postal-code">Código postal</label>
+                            <input type="text" id="postal-code" name="postalCode" placeholder="Código postal" autocomplete="off" maxlength="20" required>
                         </div>
-                        <div class="input-row">
-                            <div class="input-group">
-                                <label for="city">City</label>
-                                <input type="text" id="city" placeholder="Guatemala City">
-                            </div>
-                            <div class="input-group">
-                                <label for="postal-code">Postal Code</label>
-                                <input type="text" id="postal-code" placeholder="01001">
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </section>
 
             <aside class="order-summary-sidebar">
                 <div class="summary-card">
-                    <h3>Order Summary</h3>
-                    <div class="cart-items">
-                        <div class="summary-item">
-                            <img src="../Assets/img/homerun.jpeg" alt="homerun">
-                            <div class="item-info">
-                                <p><strong>Homerun</strong></p>
-                                <small>Paulo Londra</small>
-                            </div>
-                            <span class="price">Q100.00</span>
-                        </div>
-                    </div>
-                     <div class="cart-items">
-                        <div class="summary-item">
-                            <img src="../Assets/img/recovery.jpeg" alt="recovery">
-                            <div class="item-info">
-                                <p><strong>Recovery</strong></p>
-                                <small>Eminem</small>
-                            </div>
-                            <span class="price">Q100.00</span>
-                        </div>
-                    </div>
+                    <h3>Tu selección</h3>
+                    <div class="cart-items" data-checkout-items></div>
 
                     <div class="totals-section">
-                        <div class="total-row"><span>Subtotal</span><span>Q200.00</span></div>
-                        <div class="total-row"><span>Estimated Tax</span><span>Q12.00</span></div>
+                        <div class="total-row"><span>Subtotal</span><span data-subtotal>Q0.00</span></div>
+                        <div class="total-row"><span>Impuesto de prueba (6%)</span><span data-tax>Q0.00</span></div>
                         <div class="total-row grand-total">
-                            <span>Total</span><span>Q212.00</span>
+                            <span>Total</span><span data-total>Q0.00</span>
                         </div>
                     </div>
 
-                    <a href="../views/success.html" class="btn-place-order">Place Order &amp; Pay Q212.00 🔒</a>
-                    <p class="terms-text">By placing this order, you agree to our Terms of Service.</p>
+                    <button type="submit" class="btn-place-order" data-place-order>Completar compra de prueba</button>
+                    <p class="terms-text">No se realizará ningún cobro ni se guardarán los datos ingresados.</p>
                 </div>
             </aside>
-        </div>
+        </form>
     </main>
 </div>
+<script src="../Js/store.js"></script>
 </body>
 </html>

@@ -46,6 +46,40 @@
     color: white;
 }
 
+.input-group select {
+    box-sizing: border-box;
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid #334155;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #60b9a0;
+    outline: 2px solid rgba(96, 185, 160, 0.18);
+}
+
+.payment-brands {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: -4px 0 18px;
+}
+
+.payment-brands img {
+    width: auto;
+    height: 28px;
+    max-width: 62px;
+    object-fit: contain;
+}
+
+.input-row .input-group {
+    min-width: 0;
+}
+
 .input-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 
 /* Sidebar de Resumen */
@@ -76,7 +110,7 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    background-color: #3b82f6;
+    background-color: #398043;
     color: white;
     padding: 18px;
     border-radius: 30px;
@@ -89,7 +123,21 @@
     text-align: center;
     text-decoration: none;
 }
-.btn-place-order:hover { background-color: #2563eb; transform: scale(1.02); }
+.btn-place-order:hover:not(:disabled) { background-color: #2f7445; transform: scale(1.02); }
+.btn-place-order:disabled { cursor: not-allowed; opacity: 0.55; }
+
+.summary-item .item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.summary-item .item-info p {
+    margin: 0 0 4px;
+}
+
+.summary-item .item-info small {
+    color: #94a3b8;
+}
 
 @media (max-width: 900px) {
     .checkout-grid {

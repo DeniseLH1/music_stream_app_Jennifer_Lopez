@@ -52,43 +52,29 @@
         <main class="success-view">
             <div class="success-card">
                 <div class="success-icon">✓</div>
-                <h1>Purchase Successful!</h1>
-                <p class="success-msg">
-                    Thank you for your purchase. A confirmation email has been sent to your registered address. 
-                    You can now find your new music in your library.
+                <h1 data-success-title>¡Pedido de prueba listo!</h1>
+                <p class="success-msg" data-success-message>
+                    Esta demostración no realizó ningún cobro. Aquí está el resumen de tu pedido.
                 </p>
 
-                <div class="order-receipt">
-                    <h3>Order Summary</h3>
-                    <div class="receipt-item">
-                        <img src="../Assets/img/homerun.jpeg" alt="homerun">
-                        <div class="receipt-text">
-                            <p><strong>Homerun</strong></p>
-                            <small>Paulo Londra</small>
-                        </div>
-                        <span class="receipt-price">Q100.00</span>
-                    </div>
-                    
-                    <div class="receipt-item">
-                        <img src="../Assets/img/recovery.jpeg" >
-                        <div class="receipt-text">
-                            <p><strong>Recovery</strong></p>
-                            <small>Eminem</small>
-                        </div>
-                        <span class="receipt-price">Q100.00</span>
-                    </div>
+                <div class="order-receipt" data-order-receipt>
+                    <h3>Resumen del pedido</h3>
+                    <div data-order-items></div>
                     <div class="receipt-totals">
-                        <div class="r-row"><span>Total:</span><span>Q212.00</span></div>
-                        <div class="r-row"><small>Order ID:</small><small>#ABC-123-XYZ-456</small></div>
+                        <div class="r-row"><span>Subtotal:</span><span data-subtotal>Q0.00</span></div>
+                        <div class="r-row"><span>Impuesto de prueba:</span><span data-tax>Q0.00</span></div>
+                        <div class="r-row"><strong>Total:</strong><strong data-total>Q0.00</strong></div>
+                        <div class="r-row"><small>Pedido:</small><small data-order-id></small></div>
                     </div>
                 </div>
 
                 <div class="success-actions">
-                    <button class="btn-secondary">View Order History</button>
-                    <button class="btn-primary" onclick="window.location.href='../index.html'">Return to Store</button>
+                    <button class="btn-secondary" type="button" onclick="window.location.href='../views/cart.html'">Ver carrito</button>
+                    <button class="btn-primary" type="button" onclick="window.location.href='../index.html'">Volver a la tienda</button>
                 </div>
             </div>
         </main>
     </div>
+    <script src="../Js/store.js"></script>
 </body>
 </html>

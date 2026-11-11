@@ -26,7 +26,7 @@
         </div>
             <nav class="menu-central">
             <a href="../index.html">Home</a>/ 
-            <a href="../views/cart.html">Your Cart</a>
+            <a href="../views/cart.html">Your Cart <span data-cart-count hidden></span></a>
         </nav>
         <div class="header-right">
         <form class="search-bar">
@@ -36,72 +36,35 @@
       </div></header>
     <div class="cart-container">
     <header class="cart-header">
-        <h1>Your Cart</h1>
+        <h1>Tu carrito musical</h1>
+        <p>Revisa tu selección antes de continuar.</p>
     </header>
-<!-- -----------------------Cartas de compra----------------------------- -->
     <div class="cart-layout">
-        <section class="cart-items">
-            <div class="cart-card">
-                <img src="../Assets/img/homerun.jpeg"  class="item-thumb">
-                <div class="item-details">
-                    <h3>Homerun</h3>
-                    <p>Paulo Londra</p>
-                    <span class="format-tag">CD</span>
-                </div>
-                <div class="item-controls">
-                    <button class="qty-btn">-</button>
-                    <span class="qty-number">1</span>
-                    <button class="qty-btn">+</button>
-                </div>
-                <div class="item-price">
-                    <span>$100.00</span>
-                    <button class="delete-btn">🗑</button>
-                </div>
-            </div>
-
-            <div class="cart-card">
-                <img src="../Assets/img/recovery.jpeg" class="item-thumb">
-                <div class="item-details">
-                    <h3>Recovery</h3>
-                    <p>Eminem</p>
-                    <span class="format-tag">CD</span>
-                </div>
-                <div class="item-controls">
-                    <button class="qty-btn">-</button>
-                    <span class="qty-number">1</span>
-                    <button class="qty-btn">+</button>
-                </div>
-                <div class="item-price">
-                    <span>$100.00</span>
-                    <button class="delete-btn">🗑</button>
-                </div>
-            </div>
-        </section>
-<!-- ---------------SUMATORIA DE LA ORDEN--------------------- -->
+        <section class="cart-items" data-cart-items aria-live="polite"></section>
         <aside class="order-summary">
             <div class="summary-card">
-                <h2>Order Summary</h2>
+                <h2>Resumen de tu pedido</h2>
                 <div class="summary-line">
                     <span>Subtotal</span>
-                    <span>$200.00</span>
+                    <span data-subtotal>Q0.00</span>
                 </div>
                 <div class="summary-line">
-                    <span>Estimated Tax</span>
-                    <span>$1.84</span>
+                    <span>Impuesto de prueba (6%)</span>
+                    <span data-tax>Q0.00</span>
                 </div>
                 <hr class="divider">
                 <div class="summary-line total">
                     <span>Total</span>
-                    <span>$201.84</span>
+                    <span data-total>Q0.00</span>
                 </div>
-                
-                <button class="btn-checkout" onclick="window.location.href='payment.html'">
-                    🔒 Proceed to Checkout
+                <button class="btn-checkout" type="button" data-checkout>
+                    Continuar al checkout de prueba
                 </button>
-                <a href="../index.html" class="continue-link">Continue Shopping</a>
+                <a href="../index.html" class="continue-link">Seguir explorando música</a>
             </div>
         </aside>
     </div>
 </div>
+<script src="../Js/store.js"></script>
 </body>
 </html>
