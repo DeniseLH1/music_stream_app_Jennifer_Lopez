@@ -237,20 +237,20 @@ body {
 /* Cuadrícula de Álbumes Responsive */
 .albums {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 3fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     gap: 20px;
     padding: 20px;
+    align-items: stretch;
 }
 
 /* Diseño de la Tarjeta */
 .card {
     background: radial-gradient(var(--card-bg),var(--bg-card));
-    padding: 16px;
+    min-width: 0;
+    padding: 12px;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    text-align: center;
-   text-align: left;
-   height: 90%;
+    text-align: left;
 }
 
 .card:hover {
@@ -266,27 +266,61 @@ body {
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
 
+.album-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 8px;
+    color: inherit;
+}
+
+.info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    gap: 4px;
+}
+
+.info h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.info p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.info p:not(.precio) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .precio {
     font-size: 0.9rem;
     font-weight: bold;
     background-color: #1c421b;
     border-radius: 6px;
-    padding: 5px;
-    margin-top: auto;
-    display: inline-block;
-    align-self: center;
+    padding: 6px 10px;
+    display: block;
+    align-self: stretch;
     text-align: center;
-    width: 90%;
+    width: 100%;
 }
-.info h2,p,precio{
-    color: #ffffff;
-    font-size: 1 rem;
-    font-weight: 400;
-    margin: 0 0 5px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+.info p.precio {
+    margin-top: auto;
 }
+
 a{ text-decoration: none;}
 
 .main-container {
